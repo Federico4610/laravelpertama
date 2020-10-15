@@ -21,9 +21,7 @@ Route::get('/coba', function () {
     return view('coba');
 });
 
-Route::get('/coba/{no}', function ($no) {
-    return 'Coba ke - '. $no;
-});
+Route::get('/coba/{no}', 'App\Http\Controllers\CobaController@coba');
 
 Route::get('/test', 'App\Http\Controllers\CobaController@index');
 Route::get('/test/{ke}', 'App\Http\Controllers\CobaController@urutan');
