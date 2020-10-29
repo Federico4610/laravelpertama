@@ -17,3 +17,7 @@ Route::get('', 'App\Http\Controllers\CobaController@index');
 Route::get('/friends', 'App\Http\Controllers\CobaController@index');
 Route::get('/friends/create', 'App\Http\Controllers\CobaController@create');
 Route::post('/friends', 'App\Http\Controllers\CobaController@store');
+Route::get('/friends/{id}', 'App\Http\Controllers\CobaController@show');
+Route::get('/friends/{id}/edit', 'App\Http\Controllers\CobaController@edit');
+Route::put('/friends/{id}', 'App\Http\Controllers\CobaController@update');
+Route::delete('/friends/{id}', 'App\Http\Controllers\CobaController@destroy');

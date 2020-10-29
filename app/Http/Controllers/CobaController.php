@@ -9,19 +9,24 @@ Class CobaController extends Controller
 
     public function index()
     {
-        $friends = Friends::paginate(3);
+        $friends = Friends::orderBy('id', 'desc')->paginate(3);
 
-        return view('index', compact('friends'));
+        return view('friends.index', compact('friends'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('friends.create');
     }
 
     public function store(Request $request)
     {
         // Validate the request...
+        $request->validate([
+            'nama' => 'required|unique:friends|max:255',
+            'no_telp' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
 
         $friends = new Friends;
 
@@ -30,5 +35,37 @@ Class CobaController extends Controller
         $friends->alamat = $request->alamat;
 
         $friends->save();
+
+        return redirect('/');
+    }
+    public function show($id)
+    {
+        $friend = Friends::where('id', $id)->first();
+        return view('friends.show', ['friends' =>$friend]);
+    }
+    public function edit($id)
+    {
+        $friend = Friends::where('id', $id)->first();
+        return view('friends.edit', ['friends' =>$friend]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|unique:friends|max:255',
+            'no_telp' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
+        Friends::find($id)->update([
+            'nama' => $request->nama,
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat
+        ]);
+
+        return redirect('/');
+    }
+    public function destroy($id)
+    {
+        Friends::find($id)->delete();
+        return redirect('/');
     }
 }
