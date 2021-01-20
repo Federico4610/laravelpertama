@@ -29,3 +29,8 @@ Route::resources([
     'friends' => 'App\Http\Controllers\CobaController',
     'groups' => 'App\Http\Controllers\GroupsController'
 ]);
+
+Route::get('/groups/addmember/{group}', 'App\Http\Controllers\GroupsController@addmember');
+Route::put('/groups/addmember/{group}', 'App\Http\Controllers\GroupsController@updateaddmember');
+Route::put('/groups/deleteaddmember/{group}', 'App\Http\Controllers\GroupsController@deleteaddmember');
+
