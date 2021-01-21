@@ -40,8 +40,7 @@ class CobaController extends Controller
         $fiends = Friends::create([
             'nama' => $request -> nama,
             'no_telp' => $request -> no_telp,
-            'alamat' => $request -> alamat,
-            'groups_id' => $request -> groups_id
+            'alamat' => $request -> alamat
         ]);
 
         if($friends)
