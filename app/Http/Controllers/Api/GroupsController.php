@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 use App\Models\Groups;
 use App\Models\Friends;
 use Illuminate\Http\Request;
@@ -15,8 +15,11 @@ class GroupsController extends Controller
     {
         $groups = Groups::orderBy('id', 'desc')->paginate(3);
 
-        return view('groups.index', compact('groups'));
-    }
+        return response()->json([
+            'success' => true,
+            'message' => 'Daftar grup',
+            'data' => $groups
+        ], 200);    }
 
     /**
      * Show the form for creating a new resource.

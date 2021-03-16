@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', 'App\Http\Controllers\CobaController@index');
+Route::get('', [CobaController::class, 'index']);
+Route::get('', [GroupsController::class, 'index']);
+
 Route::resources([
-    'friends' => 'App\Http\Controllers\CobaController',
-    'groups' => 'App\Http\Controllers\GroupsController'
+    'friends' => CobaController::class,
+    'groups' => GroupsController::class
 ]);
+
+
