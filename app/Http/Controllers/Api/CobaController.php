@@ -15,7 +15,7 @@ class CobaController extends Controller
      */
     public function index()
     {
-        $friends = Friends::orderBy('id', 'desc')->paginate(3);
+        $friends = Friends::all();
 
         return response()->json([
             'success' => true,
